@@ -1,0 +1,140 @@
+[ 10%] Building NVCC (Device) object ./Schlieren_generated_host_render.cu.o
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/opengl_include.h:9,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/host_render.cu:46:
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:64:1: warning: "APIENTRY" redefined
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:59,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/opengl_include.h:9,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/host_render.cu:46:
+/usr/include/GL/gl.h:88:1: warning: this is the location of the previous definition
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/opengl_include.h:9,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/host_render.cu:46:
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:64:1: warning: "APIENTRY" redefined
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:59,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/opengl_include.h:9,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/host_render.cu:46:
+/usr/include/GL/gl.h:88:1: warning: this is the location of the previous definition
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/opengl_include.h:9,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/host_render.cu:46:
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:64:1: warning: "APIENTRY" redefined
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:59,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/opengl_include.h:9,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/host_render.cu:46:
+/usr/include/GL/gl.h:88:1: warning: this is the location of the previous definition
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/kernel_render.h(62): warning: variable "index" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/kernel_filter.h(100): warning: variable "total" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/kernel_filter.h(106): warning: variable "level_total" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/host_render.cu(246): warning: variable "dparams" is used before its value is set
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/host_render.cu(241): warning: variable "last_width" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/host_render.cu(241): warning: variable "last_height" was declared but never referenced
+
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/opengl_include.h:9,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/host_render.cu:46:
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:64:1: warning: "APIENTRY" redefined
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:59,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/opengl_include.h:9,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/host_render.cu:46:
+/usr/include/GL/gl.h:88:1: warning: this is the location of the previous definition
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/kernel_render.h(62): warning: variable "index" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/kernel_filter.h(100): warning: variable "total" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/kernel_filter.h(106): warning: variable "level_total" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/host_render.cu(246): warning: variable "dparams" is used before its value is set
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/host_render.cu(241): warning: variable "last_width" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/host_render.cu(241): warning: variable "last_height" was declared but never referenced
+
+[ 20%] Building NVCC (Device) object ./schlieren_generated_host_render.cu.o
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/opengl_include.h:9,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/host_render.cu:46:
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:64:1: warning: "APIENTRY" redefined
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:59,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/opengl_include.h:9,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/host_render.cu:46:
+/usr/include/GL/gl.h:88:1: warning: this is the location of the previous definition
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/opengl_include.h:9,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/host_render.cu:46:
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:64:1: warning: "APIENTRY" redefined
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:59,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/opengl_include.h:9,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/host_render.cu:46:
+/usr/include/GL/gl.h:88:1: warning: this is the location of the previous definition
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/opengl_include.h:9,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/host_render.cu:46:
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:64:1: warning: "APIENTRY" redefined
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:59,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/opengl_include.h:9,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/host_render.cu:46:
+/usr/include/GL/gl.h:88:1: warning: this is the location of the previous definition
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/kernel_render.h(62): warning: variable "index" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/kernel_filter.h(100): warning: variable "total" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/kernel_filter.h(106): warning: variable "level_total" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/host_render.cu(246): warning: variable "dparams" is used before its value is set
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/host_render.cu(241): warning: variable "last_width" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/host_render.cu(241): warning: variable "last_height" was declared but never referenced
+
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/opengl_include.h:9,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/host_render.cu:46:
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:64:1: warning: "APIENTRY" redefined
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:59,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/opengl_include.h:9,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/host_render.cu:46:
+/usr/include/GL/gl.h:88:1: warning: this is the location of the previous definition
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/kernel_render.h(62): warning: variable "index" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/kernel_filter.h(100): warning: variable "total" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/kernel_filter.h(106): warning: variable "level_total" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/host_render.cu(246): warning: variable "dparams" is used before its value is set
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/host_render.cu(241): warning: variable "last_width" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/host_render.cu(241): warning: variable "last_height" was declared but never referenced
+
+Scanning dependencies of target Schlieren
+[ 30%] Building CXX object CMakeFiles/Schlieren.dir/schlierenfilter.cpp.o
+[ 40%] Building CXX object CMakeFiles/Schlieren.dir/schlierenimagefilter.cpp.o
+[ 50%] Building CXX object CMakeFiles/Schlieren.dir/schlierenrenderer.cpp.o
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/opengl_include.h:9,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/schlierenrenderer.cpp:35:
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:64:1: warning: "APIENTRY" redefined
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:59,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/opengl_include.h:9,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/schlierenrenderer.cpp:35:
+/usr/include/GL/gl.h:88:1: warning: this is the location of the previous definition
+Linking CXX shared library libSchlieren.so
+[ 50%] Built target Schlieren
+Scanning dependencies of target schlieren
+[ 60%] Building CXX object CMakeFiles/schlieren.dir/main.cpp.o
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/opengl_include.h:9,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/main.cpp:37:
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:64:1: warning: "APIENTRY" redefined
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:59,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/opengl_include.h:9,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/main.cpp:37:
+/usr/include/GL/gl.h:88:1: warning: this is the location of the previous definition
+[ 70%] Building CXX object CMakeFiles/schlieren.dir/schlierenfilter.cpp.o
+[ 80%] Building CXX object CMakeFiles/schlieren.dir/schlierenimagefilter.cpp.o
+[ 90%] Building CXX object CMakeFiles/schlieren.dir/schlierenrenderer.cpp.o
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/opengl_include.h:9,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/schlierenrenderer.cpp:35:
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:64:1: warning: "APIENTRY" redefined
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:59,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/opengl_include.h:9,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/schlieren-0.2.0-src/schlierenrenderer.cpp:35:
+/usr/include/GL/gl.h:88:1: warning: this is the location of the previous definition
+Linking CXX executable schlieren
+[100%] Built target schlieren

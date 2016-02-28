@@ -1,0 +1,148 @@
+[ 10%] Building NVCC (Device) object ./Schlieren_generated_host_render.cu.o
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/opengl_include.h:4,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/host_render.cu:46:
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:64:1: warning: "APIENTRY" redefined
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:59,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/opengl_include.h:4,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/host_render.cu:46:
+/usr/include/GL/gl.h:88:1: warning: this is the location of the previous definition
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/opengl_include.h:4,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/host_render.cu:46:
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:64:1: warning: "APIENTRY" redefined
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:59,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/opengl_include.h:4,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/host_render.cu:46:
+/usr/include/GL/gl.h:88:1: warning: this is the location of the previous definition
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/opengl_include.h:4,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/host_render.cu:46:
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:64:1: warning: "APIENTRY" redefined
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:59,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/opengl_include.h:4,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/host_render.cu:46:
+/usr/include/GL/gl.h:88:1: warning: this is the location of the previous definition
+/home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/kernel_render.h(61): warning: variable "num_passes" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/kernel_render.h(64): warning: variable "window_width" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/kernel_render.h(64): warning: variable "window_height" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/kernel_render.h(124): warning: variable "pos_c" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/host_render.cu(89): warning: variable "threadId" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/host_render.cu(109): warning: variable "threadId" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/host_render.cu(288): warning: variable "N_particles" was declared but never referenced
+
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/opengl_include.h:4,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/host_render.cu:46:
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:64:1: warning: "APIENTRY" redefined
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:59,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/opengl_include.h:4,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/host_render.cu:46:
+/usr/include/GL/gl.h:88:1: warning: this is the location of the previous definition
+/home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/kernel_render.h(61): warning: variable "num_passes" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/kernel_render.h(64): warning: variable "window_width" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/kernel_render.h(64): warning: variable "window_height" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/kernel_render.h(124): warning: variable "pos_c" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/host_render.cu(89): warning: variable "threadId" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/host_render.cu(109): warning: variable "threadId" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/host_render.cu(288): warning: variable "N_particles" was declared but never referenced
+
+[ 20%] Building NVCC (Device) object ./schlieren_generated_host_render.cu.o
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/opengl_include.h:4,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/host_render.cu:46:
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:64:1: warning: "APIENTRY" redefined
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:59,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/opengl_include.h:4,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/host_render.cu:46:
+/usr/include/GL/gl.h:88:1: warning: this is the location of the previous definition
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/opengl_include.h:4,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/host_render.cu:46:
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:64:1: warning: "APIENTRY" redefined
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:59,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/opengl_include.h:4,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/host_render.cu:46:
+/usr/include/GL/gl.h:88:1: warning: this is the location of the previous definition
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/opengl_include.h:4,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/host_render.cu:46:
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:64:1: warning: "APIENTRY" redefined
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:59,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/opengl_include.h:4,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/host_render.cu:46:
+/usr/include/GL/gl.h:88:1: warning: this is the location of the previous definition
+/home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/kernel_render.h(61): warning: variable "num_passes" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/kernel_render.h(64): warning: variable "window_width" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/kernel_render.h(64): warning: variable "window_height" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/kernel_render.h(124): warning: variable "pos_c" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/host_render.cu(89): warning: variable "threadId" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/host_render.cu(109): warning: variable "threadId" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/host_render.cu(288): warning: variable "N_particles" was declared but never referenced
+
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/opengl_include.h:4,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/host_render.cu:46:
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:64:1: warning: "APIENTRY" redefined
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:59,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/opengl_include.h:4,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/host_render.cu:46:
+/usr/include/GL/gl.h:88:1: warning: this is the location of the previous definition
+/home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/kernel_render.h(61): warning: variable "num_passes" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/kernel_render.h(64): warning: variable "window_width" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/kernel_render.h(64): warning: variable "window_height" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/kernel_render.h(124): warning: variable "pos_c" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/host_render.cu(89): warning: variable "threadId" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/host_render.cu(109): warning: variable "threadId" was declared but never referenced
+
+/home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/host_render.cu(288): warning: variable "N_particles" was declared but never referenced
+
+Scanning dependencies of target Schlieren
+[ 30%] Building CXX object CMakeFiles/Schlieren.dir/schlierenfilter.cpp.o
+[ 40%] Building CXX object CMakeFiles/Schlieren.dir/schlierenimagefilter.cpp.o
+[ 50%] Building CXX object CMakeFiles/Schlieren.dir/schlierenrenderer.cpp.o
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/opengl_include.h:4,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/schlierenrenderer.cpp:35:
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:64:1: warning: "APIENTRY" redefined
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:59,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/opengl_include.h:4,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/schlierenrenderer.cpp:35:
+/usr/include/GL/gl.h:88:1: warning: this is the location of the previous definition
+Linking CXX shared library libSchlieren.so
+[ 50%] Built target Schlieren
+Scanning dependencies of target schlieren
+[ 60%] Building CXX object CMakeFiles/schlieren.dir/main.cpp.o
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/opengl_include.h:4,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/main.cpp:37:
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:64:1: warning: "APIENTRY" redefined
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:59,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/opengl_include.h:4,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/main.cpp:37:
+/usr/include/GL/gl.h:88:1: warning: this is the location of the previous definition
+[ 70%] Building CXX object CMakeFiles/schlieren.dir/schlierenfilter.cpp.o
+[ 80%] Building CXX object CMakeFiles/schlieren.dir/schlierenimagefilter.cpp.o
+[ 90%] Building CXX object CMakeFiles/schlieren.dir/schlierenrenderer.cpp.o
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/opengl_include.h:4,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/schlierenrenderer.cpp:35:
+/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:64:1: warning: "APIENTRY" redefined
+In file included from /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc/GL/glut.h:59,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/opengl_include.h:4,
+                 from /home/barracuda/a/lrajendr/SchlierenRayVis/TomoPIV/schlieren-0.2.0-src/schlierenrenderer.cpp:35:
+/usr/include/GL/gl.h:88:1: warning: this is the location of the previous definition
+Linking CXX executable schlieren
+[100%] Built target schlieren

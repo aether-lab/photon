@@ -1,0 +1,13 @@
+white dots on a black background
+radius of dots  : 16/1024 = 0.015625.
+diameter of dot : 0.03125
+delta_x : 0.125
+delta_y : 0.125
+no. of calibration planes : 5
+calibration plane spacing : 0.1
+
+number of cameras : 4
+angles : +/- 30 degrees about global X
+       : pi +/- 30 degrees about global Y
+
+

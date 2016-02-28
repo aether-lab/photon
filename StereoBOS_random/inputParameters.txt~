@@ -1,0 +1,18 @@
+// This file contains the input parameters used by schlieren.
+// Please specify all distances in consistent units
+
+height  : 1024            // image height (pixels)
+width   : 1024            // image width (pixels)  
+R       : 1.25f            // Distance of center of camera from the origin 
+_rot_x  : 0.0f            // Orientation of camera axes with respect to the world co-ordinate axes (Radians)
+_rot_y  : 3.1416f         // Orientation of camera axes with respect to the world co-ordinate axes (Radians)
+_rot_z  : 0.0f            // Orientation of camera axes with respect to the world co-ordinate axes (Radians)
+c       : 0.55f	          // Principal Distance - distance of pinhole from center of camera plane
+pitch   : 0.01f 	        // Pitch or Aperture of the pinhole
+pitch_random : 0.0325f        // Radius of circle for random image generation
+camera_width : 1.0f       // Width of the camera sensor
+camera_height : 1.0f      // Height of the camera sensor
+pos_c.x : 0.0f            // X Location of center of BOS Target in world co-ord
+pos_c.y : 0.0f            // Y Location of center of BOS Target in world co-ord
+pos_c.z : -0.5f           // Z Location of center of BOS Target in world co-ord
+N_ray   : 10000              // No. of rays emitted from one source point

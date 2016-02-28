@@ -1,0 +1,9 @@
+#ignore nrrd files
+*.nrrd
+
+# ignore h5 files
+*.h5
+
+# ignore bin files
+*.bin
+

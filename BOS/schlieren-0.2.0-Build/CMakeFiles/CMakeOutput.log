@@ -1,0 +1,249 @@
+The system is: Linux - 2.6.32-573.7.1.el6.x86_64 - x86_64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /usr/bin/cc 
+Build flags: 
+Id flags: 
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+
+The C compiler identification is GNU, found in "/home/barracuda/a/lrajendr/SchlierenRayVis/BOS/schlieren-0.2.0-Build/CMakeFiles/2.8.12.2/CompilerIdC/a.out"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: /usr/bin/c++ 
+Build flags: -I;/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc;-L;/usr/include;-lbz2;-lpng;-L/usr/lib64;-lbz2;-lpng;-I;/home/barracuda/a/lrajendr/SchlierenRayVis/BOS/schlieren-0.2.0-src
+Id flags: 
+
+The output was:
+0
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+
+The CXX compiler identification is GNU, found in "/home/barracuda/a/lrajendr/SchlierenRayVis/BOS/schlieren-0.2.0-Build/CMakeFiles/2.8.12.2/CompilerIdCXX/a.out"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: /home/barracuda/a/lrajendr/SchlierenRayVis/BOS/schlieren-0.2.0-Build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec87132790/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec87132790.dir/build.make CMakeFiles/cmTryCompileExec87132790.dir/build
+gmake[1]: Entering directory `/home/barracuda/a/lrajendr/SchlierenRayVis/BOS/schlieren-0.2.0-Build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/barracuda/a/lrajendr/SchlierenRayVis/BOS/schlieren-0.2.0-Build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec87132790.dir/testCCompiler.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec87132790.dir/testCCompiler.c.o   -c /home/barracuda/a/lrajendr/SchlierenRayVis/BOS/schlieren-0.2.0-Build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTryCompileExec87132790
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec87132790.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTryCompileExec87132790.dir/testCCompiler.c.o  -o cmTryCompileExec87132790 -rdynamic 
+gmake[1]: Leaving directory `/home/barracuda/a/lrajendr/SchlierenRayVis/BOS/schlieren-0.2.0-Build/CMakeFiles/CMakeTmp'
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /home/barracuda/a/lrajendr/SchlierenRayVis/BOS/schlieren-0.2.0-Build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec2793141712/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec2793141712.dir/build.make CMakeFiles/cmTryCompileExec2793141712.dir/build
+gmake[1]: Entering directory `/home/barracuda/a/lrajendr/SchlierenRayVis/BOS/schlieren-0.2.0-Build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/barracuda/a/lrajendr/SchlierenRayVis/BOS/schlieren-0.2.0-Build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec2793141712.dir/CMakeCCompilerABI.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec2793141712.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake/Modules/CMakeCCompilerABI.c
+Linking C executable cmTryCompileExec2793141712
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2793141712.dir/link.txt --verbose=1
+/usr/bin/cc     -v CMakeFiles/cmTryCompileExec2793141712.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec2793141712 -rdynamic  
+Using built-in specs.
+Target: x86_64-redhat-linux
+Configured with: ../configure --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-bootstrap --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-languages=c,c++,objc,obj-c++,java,fortran,ada --enable-java-awt=gtk --disable-dssi --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-1.5.0.0/jre --enable-libgcj-multifile --enable-java-maintainer-mode --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --disable-libjava-multilib --with-ppl --with-cloog --with-tune=generic --with-arch_32=i686 --build=x86_64-redhat-linux
+Thread model: posix
+gcc version 4.4.7 20120313 (Red Hat 4.4.7-16) (GCC) 
+COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/4.4.7/:/usr/libexec/gcc/x86_64-redhat-linux/4.4.7/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/4.4.7/:/usr/lib/gcc/x86_64-redhat-linux/:/usr/libexec/gcc/x86_64-redhat-linux/4.4.7/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/4.4.7/:/usr/lib/gcc/x86_64-redhat-linux/
+LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/4.4.7/:/usr/lib/gcc/x86_64-redhat-linux/4.4.7/:/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec2793141712' '-rdynamic' '-mtune=generic'
+ /usr/libexec/gcc/x86_64-redhat-linux/4.4.7/collect2 --eh-frame-hdr --build-id -m elf_x86_64 --hash-style=gnu -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTryCompileExec2793141712 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/4.4.7 -L/usr/lib/gcc/x86_64-redhat-linux/4.4.7 -L/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../.. CMakeFiles/cmTryCompileExec2793141712.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtend.o /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crtn.o
+gmake[1]: Leaving directory `/home/barracuda/a/lrajendr/SchlierenRayVis/BOS/schlieren-0.2.0-Build/CMakeFiles/CMakeTmp'
+
+
+Parsed C implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /home/barracuda/a/lrajendr/SchlierenRayVis/BOS/schlieren-0.2.0-Build/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command:/usr/bin/gmake "cmTryCompileExec2793141712/fast"]
+  ignore line: [/usr/bin/gmake -f CMakeFiles/cmTryCompileExec2793141712.dir/build.make CMakeFiles/cmTryCompileExec2793141712.dir/build]
+  ignore line: [gmake[1]: Entering directory `/home/barracuda/a/lrajendr/SchlierenRayVis/BOS/schlieren-0.2.0-Build/CMakeFiles/CMakeTmp']
+  ignore line: [/usr/bin/cmake -E cmake_progress_report /home/barracuda/a/lrajendr/SchlierenRayVis/BOS/schlieren-0.2.0-Build/CMakeFiles/CMakeTmp/CMakeFiles 1]
+  ignore line: [Building C object CMakeFiles/cmTryCompileExec2793141712.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/cc    -o CMakeFiles/cmTryCompileExec2793141712.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTryCompileExec2793141712]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2793141712.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/cc     -v CMakeFiles/cmTryCompileExec2793141712.dir/CMakeCCompilerABI.c.o  -o cmTryCompileExec2793141712 -rdynamic  ]
+  ignore line: [Using built-in specs.]
+  ignore line: [Target: x86_64-redhat-linux]
+  ignore line: [Configured with: ../configure --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-bootstrap --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-languages=c,c++,objc,obj-c++,java,fortran,ada --enable-java-awt=gtk --disable-dssi --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-1.5.0.0/jre --enable-libgcj-multifile --enable-java-maintainer-mode --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --disable-libjava-multilib --with-ppl --with-cloog --with-tune=generic --with-arch_32=i686 --build=x86_64-redhat-linux]
+  ignore line: [Thread model: posix]
+  ignore line: [gcc version 4.4.7 20120313 (Red Hat 4.4.7-16) (GCC) ]
+  ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/4.4.7/:/usr/libexec/gcc/x86_64-redhat-linux/4.4.7/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/4.4.7/:/usr/lib/gcc/x86_64-redhat-linux/:/usr/libexec/gcc/x86_64-redhat-linux/4.4.7/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/4.4.7/:/usr/lib/gcc/x86_64-redhat-linux/]
+  ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/4.4.7/:/usr/lib/gcc/x86_64-redhat-linux/4.4.7/:/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTryCompileExec2793141712' '-rdynamic' '-mtune=generic']
+  link line: [ /usr/libexec/gcc/x86_64-redhat-linux/4.4.7/collect2 --eh-frame-hdr --build-id -m elf_x86_64 --hash-style=gnu -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTryCompileExec2793141712 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/4.4.7 -L/usr/lib/gcc/x86_64-redhat-linux/4.4.7 -L/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../.. CMakeFiles/cmTryCompileExec2793141712.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtend.o /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crtn.o]
+    arg [/usr/libexec/gcc/x86_64-redhat-linux/4.4.7/collect2] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [--build-id] ==> ignore
+    arg [-m] ==> ignore
+    arg [elf_x86_64] ==> ignore
+    arg [--hash-style=gnu] ==> ignore
+    arg [-export-dynamic] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTryCompileExec2793141712] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crt1.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crti.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtbegin.o] ==> ignore
+    arg [-L/usr/lib/gcc/x86_64-redhat-linux/4.4.7] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/4.4.7]
+    arg [-L/usr/lib/gcc/x86_64-redhat-linux/4.4.7] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/4.4.7]
+    arg [-L/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64]
+    arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+    arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+    arg [-L/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../..] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../..]
+    arg [CMakeFiles/cmTryCompileExec2793141712.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [-lgcc] ==> lib [gcc]
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--no-as-needed] ==> ignore
+    arg [-lc] ==> lib [c]
+    arg [-lgcc] ==> lib [gcc]
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--no-as-needed] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtend.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crtn.o] ==> ignore
+  remove lib [gcc]
+  remove lib [gcc_s]
+  remove lib [gcc]
+  remove lib [gcc_s]
+  collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/4.4.7] ==> [/usr/lib/gcc/x86_64-redhat-linux/4.4.7]
+  collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/4.4.7] ==> [/usr/lib/gcc/x86_64-redhat-linux/4.4.7]
+  collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64] ==> [/usr/lib64]
+  collapse library dir [/lib/../lib64] ==> [/lib64]
+  collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+  collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../..] ==> [/usr/lib]
+  implicit libs: [c]
+  implicit dirs: [/usr/lib/gcc/x86_64-redhat-linux/4.4.7;/usr/lib64;/lib64;/usr/lib]
+  implicit fwks: []
+
+
+Determining if the CXX compiler works passed with the following output:
+Change Dir: /home/barracuda/a/lrajendr/SchlierenRayVis/BOS/schlieren-0.2.0-Build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec4112843493/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec4112843493.dir/build.make CMakeFiles/cmTryCompileExec4112843493.dir/build
+gmake[1]: Entering directory `/home/barracuda/a/lrajendr/SchlierenRayVis/BOS/schlieren-0.2.0-Build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/barracuda/a/lrajendr/SchlierenRayVis/BOS/schlieren-0.2.0-Build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec4112843493.dir/testCXXCompiler.cxx.o
+/usr/bin/c++    -I /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc -L /usr/include -lbz2 -lpng -L/usr/lib64 -lbz2 -lpng -I /home/barracuda/a/lrajendr/SchlierenRayVis/BOS/schlieren-0.2.0-src    -o CMakeFiles/cmTryCompileExec4112843493.dir/testCXXCompiler.cxx.o -c /home/barracuda/a/lrajendr/SchlierenRayVis/BOS/schlieren-0.2.0-Build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTryCompileExec4112843493
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec4112843493.dir/link.txt --verbose=1
+/usr/bin/c++   -I /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc -L /usr/include -lbz2 -lpng -L/usr/lib64 -lbz2 -lpng -I /home/barracuda/a/lrajendr/SchlierenRayVis/BOS/schlieren-0.2.0-src     CMakeFiles/cmTryCompileExec4112843493.dir/testCXXCompiler.cxx.o  -o cmTryCompileExec4112843493 -rdynamic 
+gmake[1]: Leaving directory `/home/barracuda/a/lrajendr/SchlierenRayVis/BOS/schlieren-0.2.0-Build/CMakeFiles/CMakeTmp'
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: /home/barracuda/a/lrajendr/SchlierenRayVis/BOS/schlieren-0.2.0-Build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec1794107459/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec1794107459.dir/build.make CMakeFiles/cmTryCompileExec1794107459.dir/build
+gmake[1]: Entering directory `/home/barracuda/a/lrajendr/SchlierenRayVis/BOS/schlieren-0.2.0-Build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/barracuda/a/lrajendr/SchlierenRayVis/BOS/schlieren-0.2.0-Build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec1794107459.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/c++    -I /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc -L /usr/include -lbz2 -lpng -L/usr/lib64 -lbz2 -lpng -I /home/barracuda/a/lrajendr/SchlierenRayVis/BOS/schlieren-0.2.0-src    -o CMakeFiles/cmTryCompileExec1794107459.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTryCompileExec1794107459
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1794107459.dir/link.txt --verbose=1
+/usr/bin/c++   -I /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc -L /usr/include -lbz2 -lpng -L/usr/lib64 -lbz2 -lpng -I /home/barracuda/a/lrajendr/SchlierenRayVis/BOS/schlieren-0.2.0-src   -v CMakeFiles/cmTryCompileExec1794107459.dir/CMakeCXXCompilerABI.cpp.o  -o cmTryCompileExec1794107459 -rdynamic  
+Using built-in specs.
+Target: x86_64-redhat-linux
+Configured with: ../configure --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-bootstrap --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-languages=c,c++,objc,obj-c++,java,fortran,ada --enable-java-awt=gtk --disable-dssi --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-1.5.0.0/jre --enable-libgcj-multifile --enable-java-maintainer-mode --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --disable-libjava-multilib --with-ppl --with-cloog --with-tune=generic --with-arch_32=i686 --build=x86_64-redhat-linux
+Thread model: posix
+gcc version 4.4.7 20120313 (Red Hat 4.4.7-16) (GCC) 
+COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/4.4.7/:/usr/libexec/gcc/x86_64-redhat-linux/4.4.7/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/4.4.7/:/usr/lib/gcc/x86_64-redhat-linux/:/usr/libexec/gcc/x86_64-redhat-linux/4.4.7/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/4.4.7/:/usr/lib/gcc/x86_64-redhat-linux/
+LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/4.4.7/:/usr/lib/gcc/x86_64-redhat-linux/4.4.7/:/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-I' '/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc' '-L' '/usr/include' '-L/usr/lib64' '-I' '/home/barracuda/a/lrajendr/SchlierenRayVis/BOS/schlieren-0.2.0-src' '-v' '-o' 'cmTryCompileExec1794107459' '-rdynamic' '-shared-libgcc' '-mtune=generic'
+ /usr/libexec/gcc/x86_64-redhat-linux/4.4.7/collect2 --eh-frame-hdr --build-id -m elf_x86_64 --hash-style=gnu -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTryCompileExec1794107459 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtbegin.o -L /usr/include -L/usr/lib64 -L/usr/lib/gcc/x86_64-redhat-linux/4.4.7 -L/usr/lib/gcc/x86_64-redhat-linux/4.4.7 -L/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../.. -lbz2 -lpng -lbz2 -lpng CMakeFiles/cmTryCompileExec1794107459.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtend.o /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crtn.o
+gmake[1]: Leaving directory `/home/barracuda/a/lrajendr/SchlierenRayVis/BOS/schlieren-0.2.0-Build/CMakeFiles/CMakeTmp'
+
+
+Parsed CXX implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /home/barracuda/a/lrajendr/SchlierenRayVis/BOS/schlieren-0.2.0-Build/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command:/usr/bin/gmake "cmTryCompileExec1794107459/fast"]
+  ignore line: [/usr/bin/gmake -f CMakeFiles/cmTryCompileExec1794107459.dir/build.make CMakeFiles/cmTryCompileExec1794107459.dir/build]
+  ignore line: [gmake[1]: Entering directory `/home/barracuda/a/lrajendr/SchlierenRayVis/BOS/schlieren-0.2.0-Build/CMakeFiles/CMakeTmp']
+  ignore line: [/usr/bin/cmake -E cmake_progress_report /home/barracuda/a/lrajendr/SchlierenRayVis/BOS/schlieren-0.2.0-Build/CMakeFiles/CMakeTmp/CMakeFiles 1]
+  ignore line: [Building CXX object CMakeFiles/cmTryCompileExec1794107459.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/usr/bin/c++    -I /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc -L /usr/include -lbz2 -lpng -L/usr/lib64 -lbz2 -lpng -I /home/barracuda/a/lrajendr/SchlierenRayVis/BOS/schlieren-0.2.0-src    -o CMakeFiles/cmTryCompileExec1794107459.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTryCompileExec1794107459]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1794107459.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/c++   -I /home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc -L /usr/include -lbz2 -lpng -L/usr/lib64 -lbz2 -lpng -I /home/barracuda/a/lrajendr/SchlierenRayVis/BOS/schlieren-0.2.0-src   -v CMakeFiles/cmTryCompileExec1794107459.dir/CMakeCXXCompilerABI.cpp.o  -o cmTryCompileExec1794107459 -rdynamic  ]
+  ignore line: [Using built-in specs.]
+  ignore line: [Target: x86_64-redhat-linux]
+  ignore line: [Configured with: ../configure --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=http://bugzilla.redhat.com/bugzilla --enable-bootstrap --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-languages=c,c++,objc,obj-c++,java,fortran,ada --enable-java-awt=gtk --disable-dssi --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-1.5.0.0/jre --enable-libgcj-multifile --enable-java-maintainer-mode --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --disable-libjava-multilib --with-ppl --with-cloog --with-tune=generic --with-arch_32=i686 --build=x86_64-redhat-linux]
+  ignore line: [Thread model: posix]
+  ignore line: [gcc version 4.4.7 20120313 (Red Hat 4.4.7-16) (GCC) ]
+  ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/4.4.7/:/usr/libexec/gcc/x86_64-redhat-linux/4.4.7/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/4.4.7/:/usr/lib/gcc/x86_64-redhat-linux/:/usr/libexec/gcc/x86_64-redhat-linux/4.4.7/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/4.4.7/:/usr/lib/gcc/x86_64-redhat-linux/]
+  ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/4.4.7/:/usr/lib/gcc/x86_64-redhat-linux/4.4.7/:/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-I' '/home/barracuda/a/lrajendr/SchlierenRayVis/SchlierenRay/cuda-samples/NVIDIA_CUDA-7.0_Samples/common/inc' '-L' '/usr/include' '-L/usr/lib64' '-I' '/home/barracuda/a/lrajendr/SchlierenRayVis/BOS/schlieren-0.2.0-src' '-v' '-o' 'cmTryCompileExec1794107459' '-rdynamic' '-shared-libgcc' '-mtune=generic']
+  link line: [ /usr/libexec/gcc/x86_64-redhat-linux/4.4.7/collect2 --eh-frame-hdr --build-id -m elf_x86_64 --hash-style=gnu -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTryCompileExec1794107459 /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtbegin.o -L /usr/include -L/usr/lib64 -L/usr/lib/gcc/x86_64-redhat-linux/4.4.7 -L/usr/lib/gcc/x86_64-redhat-linux/4.4.7 -L/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../.. -lbz2 -lpng -lbz2 -lpng CMakeFiles/cmTryCompileExec1794107459.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtend.o /usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crtn.o]
+    arg [/usr/libexec/gcc/x86_64-redhat-linux/4.4.7/collect2] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [--build-id] ==> ignore
+    arg [-m] ==> ignore
+    arg [elf_x86_64] ==> ignore
+    arg [--hash-style=gnu] ==> ignore
+    arg [-export-dynamic] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTryCompileExec1794107459] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crt1.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crti.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtbegin.o] ==> ignore
+    arg [-L/usr/include] ==> dir [/usr/include]
+    arg [-L/usr/lib64] ==> dir [/usr/lib64]
+    arg [-L/usr/lib/gcc/x86_64-redhat-linux/4.4.7] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/4.4.7]
+    arg [-L/usr/lib/gcc/x86_64-redhat-linux/4.4.7] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/4.4.7]
+    arg [-L/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64]
+    arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+    arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+    arg [-L/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../..] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../..]
+    arg [-lbz2] ==> lib [bz2]
+    arg [-lpng] ==> lib [png]
+    arg [-lbz2] ==> lib [bz2]
+    arg [-lpng] ==> lib [png]
+    arg [CMakeFiles/cmTryCompileExec1794107459.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [-lstdc++] ==> lib [stdc++]
+    arg [-lm] ==> lib [m]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [-lc] ==> lib [c]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.4.7/crtend.o] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64/crtn.o] ==> ignore
+  remove lib [gcc_s]
+  remove lib [gcc]
+  remove lib [gcc_s]
+  remove lib [gcc]
+  collapse library dir [/usr/include] ==> [/usr/include]
+  collapse library dir [/usr/lib64] ==> [/usr/lib64]
+  collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/4.4.7] ==> [/usr/lib/gcc/x86_64-redhat-linux/4.4.7]
+  collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/4.4.7] ==> [/usr/lib/gcc/x86_64-redhat-linux/4.4.7]
+  collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../lib64] ==> [/usr/lib64]
+  collapse library dir [/lib/../lib64] ==> [/lib64]
+  collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+  collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../..] ==> [/usr/lib]
+  implicit libs: [bz2;png;bz2;png;stdc++;m;c]
+  implicit dirs: [/usr/include;/usr/lib64;/usr/lib/gcc/x86_64-redhat-linux/4.4.7;/lib64;/usr/lib]
+  implicit fwks: []
+
+

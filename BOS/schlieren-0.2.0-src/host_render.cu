@@ -1,0 +1,299 @@
+/*
+  For more information, please see: http://software.sci.utah.edu
+
+  The MIT License
+
+  Copyright (c) 2012-2013
+  Scientific Computing and Imaging Institute, University of Utah
+
+  License for the specific language governing rights and limitations under
+  Permission is hereby granted, free of charge, to any person obtaining a
+  copy of this software and associated documentation files (the "Software"),
+  to deal in the Software without restriction, including without limitation
+  the rights to use, copy, modify, merge, publish, distribute, sublicense,
+  and/or sell copies of the Software, and to permit persons to whom the
+  Software is furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included
+  in all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+  OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+  THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+  DEALINGS IN THE SOFTWARE.
+*/
+
+
+
+
+
+#define DEBUG 0
+
+// includes, system
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <time.h>
+#include <sys/time.h>
+#include <teem/nrrd.h>
+
+
+// includes, GL
+#include "opengl_include.h"
+#include <float.h>
+#include <assert.h>
+
+// includes
+#include "cutil.h"
+#include "cutil_math.h"
+#include <cuda.h>
+#include "cuda_gl_interop.h"
+#include <cstdlib>
+
+#include "RenderParameters.h"
+ #include "kernel_render.h"
+  #include "kernel_filter.h"
+
+RenderParameters* dparams;
+cudaArray* data_array = 0, *texture_array = 0, *color_array = 0;
+unsigned int last_width, last_height;
+    unsigned int* d_out = 0;
+    unsigned int* d_source = 0;
+    float4* d_inout = 0;
+    float* d_rand_x = 0;
+
+void Host_CopyMemory(RenderParameters* params);
+void Host_Resize(RenderParameters* paramsp);
+
+__host__ int rgbToIntHost(float r, float g, float b)
+{
+    r = clamp(r, 0.0f, 255.0f);
+    g = clamp(g, 0.0f, 255.0f);
+    b = clamp(b, 0.0f, 255.0f);
+    return (int(b)<<16) | (int(g)<<8) | int(r);
+}
+
+__host__ float getRandom()
+{
+  return drand48();
+}
+
+
+
+extern "C"
+{
+
+void Host_Init(RenderParameters* paramsp)
+{
+cudaMalloc((void**)&dparams, sizeof(RenderParameters));
+cudaMemcpy(dparams, paramsp, sizeof(RenderParameters),cudaMemcpyHostToDevice);
+//dparams = (RenderParameters*)malloc(sizeof(RenderParameters));
+
+//setup data texture
+tex_data.addressMode[0] = cudaAddressModeClamp;
+tex_data.addressMode[1] = cudaAddressModeClamp;
+tex_data.filterMode = cudaFilterModeLinear;
+tex_data.normalized = false;
+
+cudaChannelFormatDesc channelDesc = cudaCreateChannelDesc<float4>();
+  cudaExtent extent = make_cudaExtent(paramsp->data_width, paramsp->data_height, paramsp->data_depth);
+  checkCudaErrors( cudaMalloc3DArray(&data_array, &channelDesc, extent) );
+  cudaMemcpy3DParms copyParams = {0};
+  copyParams.srcPtr = make_cudaPitchedPtr((void*)paramsp->data, extent.width*sizeof(float4), extent.width, extent.height);
+  copyParams.dstArray = data_array;
+  copyParams.extent = extent;
+  copyParams.kind = cudaMemcpyHostToDevice;
+  checkCudaErrors(  cudaMemcpy3D(&copyParams) );
+
+  cudaBindTextureToArray(tex_data, data_array, channelDesc);
+
+//setup cutoff texture
+  if (paramsp->cutoff  == CUTOFF_IMAGE)
+  {
+tex_cutoff.addressMode[0] = cudaAddressModeClamp;
+tex_cutoff.addressMode[1] = cudaAddressModeClamp;
+tex_cutoff.filterMode = cudaFilterModeLinear;
+tex_cutoff.normalized = true;
+
+cudaChannelFormatDesc channelDesc2 = cudaCreateChannelDesc<float4>();
+cudaMallocArray(&texture_array, &channelDesc2, paramsp->cutoffSize.x, paramsp->cutoffSize.y);
+cudaMemcpyToArray(texture_array, 0, 0, paramsp->cutoff_rgb, paramsp->cutoffSize.x*paramsp->cutoffSize.y*sizeof(float4), cudaMemcpyHostToDevice);
+
+  cudaBindTextureToArray(tex_cutoff, texture_array, channelDesc2);
+  paramsp->cutoff_dirty = false;
+  }
+
+Host_Resize(paramsp);
+}
+
+
+void Host_Render(RenderParameters* paramsp)
+{
+    printf("rendering...\n");
+    if (last_width != paramsp->width || last_height != paramsp->height)
+        Host_Resize(paramsp);
+    RenderParameters& params = *paramsp;
+    
+    Host_CopyMemory(paramsp);
+    //Define a block of 16x16 = 256 threads. Each thread is a pixel
+    dim3 block(16,16,1);
+    // Define a grid of width/16 x height/16 blocks
+    dim3 grid((params.width/block.x),(params.height/block.y),1);   //positions go 0 to 100, which maps to -1 to 1 on each lightplace axis
+
+    int tallyLaunch,tallyReceive, *dev_tally_Launch, *dev_tally_Receive;
+  cudaMalloc((void **)&dev_tally_Launch, sizeof(int));
+  tallyLaunch = 0;
+  cudaMemcpy(dev_tally_Launch, &tallyLaunch, sizeof(int), cudaMemcpyHostToDevice);
+  
+  cudaMalloc((void **)&dev_tally_Receive, sizeof(int));
+  tallyReceive = 0;
+  cudaMemcpy(dev_tally_Receive, &tallyReceive, sizeof(int), cudaMemcpyHostToDevice);
+  
+    float tallyOffset, *dev_tally_Offset;
+      cudaMalloc((void **)&dev_tally_Offset, sizeof(float));
+  tallyOffset = 0.0f;
+  cudaMemcpy(dev_tally_Offset, &tallyOffset, sizeof(float), cudaMemcpyHostToDevice);
+
+  // allocate space on the device for the results
+    cudaMemcpy(dparams, paramsp, sizeof(RenderParameters),cudaMemcpyHostToDevice);
+ 
+    cudaMalloc((void**)&d_source, sizeof(unsigned int)*paramsp->width*paramsp->height); 
+    cudaMemcpy(d_source,paramsp->source_rgb,sizeof(unsigned int)*params.width*params.height,cudaMemcpyHostToDevice);
+ 
+    //printf("source_rgb[1]: %d\n",paramsp->source_rgb[1]);
+    //printf("d_source[1]: %d\n", d_source[1]);
+    cudaThreadSynchronize();
+    //d_out = 0;
+    kernel_render<<< grid, block>>>(dparams, d_inout, d_out, d_rand_x, d_source,dev_tally_Launch,dev_tally_Receive,dev_tally_Offset);
+    cudaThreadSynchronize();
+    paramsp->passes+=paramsp->raysPerPixel;
+    
+    cudaMemcpy(&tallyLaunch, dev_tally_Launch, sizeof(int), cudaMemcpyDeviceToHost); 
+    printf("total number of photons launched: %d\n", tallyLaunch);
+    
+    cudaMemcpy(&tallyReceive, dev_tally_Receive, sizeof(int), cudaMemcpyDeviceToHost); 
+    printf("total number of photons received: %d\n", tallyReceive);
+    
+    cudaMemcpy(&tallyOffset, dev_tally_Offset, sizeof(float), cudaMemcpyDeviceToHost); 
+    printf("total offset: %f\n", tallyOffset);
+    
+    int sum_out_rgb=0;
+    
+    for (int i = 0;i<paramsp->width*paramsp->height;i++)
+      sum_out_rgb = sum_out_rgb+paramsp->out_rgb[i];
+    
+    printf("sum_out_rgb before memcpy: %d\n", sum_out_rgb);
+    cudaMemcpy(paramsp->out_rgb, d_out, sizeof(unsigned int)*params.width*params.height, cudaMemcpyDeviceToHost);
+    
+    sum_out_rgb = 0;
+    for (int i = 0;i<paramsp->width*paramsp->height;i++)
+      sum_out_rgb = sum_out_rgb+paramsp->out_rgb[i];
+    
+    printf("sum_out_rgb after memcpy: %d\n", sum_out_rgb);
+    
+    cudaThreadSynchronize();
+    //cudaFree(d_out);
+    glDrawPixels(params.width, params.height, GL_RGBA, GL_UNSIGNED_BYTE, paramsp->out_rgb);
+    printf("rendering finished\n");
+}
+
+void Host_Clear(RenderParameters* paramsp)
+{
+  if (!d_inout)
+    return;
+  cudaMemcpy(d_inout, paramsp->inout_rgb, sizeof(float4)*paramsp->width*paramsp->height, cudaMemcpyHostToDevice);
+}
+
+void Host_Kill()
+{
+
+RenderParameters* dparams;
+cudaArray* data_array = 0, *texture_array = 0, *color_array = 0;
+unsigned int last_width, last_height;
+    unsigned int* d_out = 0;
+    unsigned int* d_source = 0;
+    float4* d_inout = 0;
+    float* d_rand_x = 0;
+  cudaFree(d_inout);
+  cudaFree(dparams);
+  cudaFree(d_out);
+  cudaFree(d_rand_x);
+  cudaFree(d_source);
+
+cudaUnbindTexture (tex_data);
+ checkCudaErrors (cudaFreeArray (data_array));
+ cudaUnbindTexture (tex_data2);
+ checkCudaErrors (cudaFreeArray (texture_array));
+ cudaUnbindTexture (tex_cutoff);
+ checkCudaErrors (cudaFreeArray (color_array));
+}
+
+
+}
+
+void Host_CopyMemory(RenderParameters* paramsp)
+{
+//TODO: NOTE: for debugging perposes only memcopy, however need to support size changes
+
+if (paramsp->cutoff_dirty)
+{
+//if (texture_array)
+//    cudaFree(texture_array);
+    cudaChannelFormatDesc channelDesc2 = cudaCreateChannelDesc<float4>();
+//cudaMallocArray(&texture_array, &channelDesc2, paramsp->cutoffSize.x, paramsp->cutoffSize.y);
+cudaMemcpyToArray(texture_array, 0, 0, paramsp->cutoff_rgb, paramsp->cutoffSize.x*paramsp->cutoffSize.y*sizeof(float4), cudaMemcpyHostToDevice);
+paramsp->cutoff_dirty = false;
+}
+}
+
+void Host_Resize(RenderParameters* paramsp)
+{
+    printf("resizing to %d %d \n", paramsp->width, paramsp->height);
+    paramsp->passes = 0;
+    int window_size = paramsp->width*paramsp->height;
+    
+    printf("set d_inout to zero\n");
+    if (d_inout)
+      cudaFree(d_inout);
+    cudaMalloc((void**)&d_inout, sizeof(float4)*paramsp->width*paramsp->height);
+    for(size_t i = 0; i < paramsp->width*paramsp->height; i++)
+        paramsp->inout_rgb[i] = make_float4(0,0,0,0);
+    cudaMemcpy(d_inout, paramsp->inout_rgb, sizeof(float4)*paramsp->width*paramsp->height, cudaMemcpyHostToDevice);
+
+    printf("set d_out to zero\n");
+    if (d_out)
+      cudaFree(d_out);
+    cudaMalloc((void**)&d_out, sizeof(unsigned int)*paramsp->width*paramsp->height);
+    //for (int i = 0;i<paramsp->width*paramsp->height;i++)
+    //  d_out[i]=0;
+    last_width = paramsp->width;
+    last_height = paramsp->height;
+    
+    printf("set paramsp->out_rgb to zero\n");
+    if (paramsp->out_rgb)
+      free(paramsp->out_rgb);
+    paramsp->out_rgb = (unsigned int*)malloc(sizeof(unsigned int)*paramsp->width*paramsp->height);
+    for (int i = 0;i<paramsp->width*paramsp->height;i++)
+      paramsp->out_rgb[i]=0;
+    
+     cudaMemcpy(d_out, paramsp->out_rgb, sizeof(unsigned int)*paramsp->width*paramsp->height, cudaMemcpyHostToDevice);
+
+    if(d_source)
+      cudaFree(d_source);
+    cudaMalloc((void**)&d_source, sizeof(unsigned int)*paramsp->width*paramsp->height);
+    
+  if (d_rand_x)
+     cudaFree(d_rand_x);
+
+   paramsp->random_array  = (float*)malloc(sizeof(float)*window_size);
+   for(int i =0;i<window_size;i++){
+    paramsp->random_array[i] = getRandom();
+   }
+   cudaMalloc((void**)&d_rand_x, window_size*sizeof(float));
+cudaMemcpy( d_rand_x, paramsp->random_array,sizeof(float)*window_size, cudaMemcpyHostToDevice  );
+}
+

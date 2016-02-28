@@ -1,0 +1,17 @@
+# no temporary files
+*~
+# ignore build directory
+schlieren-0.2.0-Build/
+schlierenvis-build/
+
+# ignore cuda samples
+cuda-samples/
+
+# ignore results
+parametric_study
+
+# ignore .tar.gz file
+*.tar.gz
+
+# ignore Data
+/Data

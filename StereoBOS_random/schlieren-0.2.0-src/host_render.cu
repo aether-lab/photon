@@ -1,0 +1,499 @@
+/*
+  For more information, please see: http://software.sci.utah.edu
+
+  The MIT License
+
+  Copyright (c) 2012-2013
+  Scientific Computing and Imaging Institute, University of Utah
+
+  License for the specific language governing rights and limitations under
+  Permission is hereby granted, free of charge, to any person obtaining a
+  copy of this software and associated documentation files (the "Software"),
+  to deal in the Software without restriction, including without limitation
+  the rights to use, copy, modify, merge, publish, distribute, sublicense,
+  and/or sell copies of the Software, and to permit persons to whom the
+  Software is furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included
+  in all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+  OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+  THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+  DEALINGS IN THE SOFTWARE.
+*/
+
+
+
+
+
+#define DEBUG 0
+
+// includes, system
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <time.h>
+#include <sys/time.h>
+#include <teem/nrrd.h>
+
+
+// includes, GL
+#include "opengl_include.h"
+#include <float.h>
+#include <assert.h>
+
+// includes
+#include "cutil.h"
+#include "cutil_math.h"
+#include <cuda.h>
+#include "cuda_gl_interop.h"
+#include <cstdlib>
+#include <unistd.h>
+
+/* we need these includes for CUDA's random number stuff */
+#include <curand.h>
+#include <curand_kernel.h>
+
+// include other files from schlieren package
+#include "RenderParameters.h"
+#include "kernel_render.h"
+#include "kernel_filter.h"
+
+RenderParameters* dparams;
+LightField* dlightfield;
+cudaArray* data_array = 0, *texture_array = 0, *color_array = 0;
+unsigned int last_width, last_height;
+    unsigned int* d_out = 0;
+    unsigned int* d_source = 0;
+    float4* d_inout = 0;
+    float* d_rand_phi = 0; float* d_rand_theta = 0;  // random arrays for angles theta and phi
+float3* d_ray_pos = 0;
+float3* d_ray_dir = 0;
+__constant__ float* d_rand_array;
+float* rand_array;
+float* d_rand;
+    
+void Host_CopyMemory(RenderParameters* params);
+void Host_Resize(RenderParameters* paramsp);
+
+/* this GPU kernel function is used to initialize the random states */
+__global__ void init(unsigned int seed, curandState_t* states) {
+
+   
+   int blockId = blockIdx.x + blockIdx.y * gridDim.x; 
+   int threadId = blockId * (blockDim.x * blockDim.y) + (threadIdx.y * blockDim.x) + threadIdx.x;  
+   
+
+  /* we have to initialize the state */
+  curand_init(seed, /* the seed can be the same for each core, here we pass the time in from the CPU */
+              blockIdx.x, /* the sequence number should be different for each core (unless you want all
+                             cores to get the same sequence of numbers for some reason - use thread id! */
+              0, /* the offset is how much extra we advance in the sequence for each call, can be 0 */
+              &states[blockIdx.x]);
+}
+
+
+/* this GPU kernel function calculates a random number and stores it in the parameter */
+__global__ void random(curandState_t* states,float* result) {
+  /* CUDA's random number library uses curandState_t to keep track of the seed value
+     we will store a random state for every thread  */
+ // curandState_t state;
+  //int seed = threadIdx.x;
+  /* we have to initialize the state */
+   int blockId = blockIdx.x + blockIdx.y * gridDim.x; 
+   int threadId = blockId * (blockDim.x * blockDim.y) + (threadIdx.y * blockDim.x) + threadIdx.x;  
+ 
+  /* curand works like rand - except that it takes a state as a parameter */
+  result[blockIdx.x] = curand_uniform(&states[blockIdx.x]);
+}
+
+
+__host__ int rgbToIntHost(float r, float g, float b)
+{
+    r = clamp(r, 0.0f, 255.0f);
+    g = clamp(g, 0.0f, 255.0f);
+    b = clamp(b, 0.0f, 255.0f);
+    return (int(b)<<16) | (int(g)<<8) | int(r);
+}
+
+__host__ float getRandom()
+{
+  return drand48();
+}
+
+
+
+extern "C"
+{
+
+void Host_Init(RenderParameters* paramsp)
+{
+cudaMalloc((void**)&dparams, sizeof(RenderParameters));
+cudaMemcpy(dparams, paramsp, sizeof(RenderParameters),cudaMemcpyHostToDevice);
+
+//dparams = (RenderParameters*)malloc(sizeof(RenderParameters));
+
+// set up lightfield
+//cudaMalloc((void**)&dlightfield, sizeof(LightField)*paramsp->width*paramsp->height*paramsp->raysPerPixel);
+//cudaMemcpy(dlightfield,paramsp->lightfieldp, sizeof(LightField)*paramsp->width*paramsp->height,cudaMemcpyHostToDevice);
+
+/*
+for(int i = 0;i<paramsp->width*paramsp->height;i++)
+{
+  LightField& lf = paramsp->lightfieldp[i];
+  cudaMalloc((void**)&dlightfield->pos, sizeof(float3)*paramsp->raysPerPixel);
+  cudaMalloc((void**)&dlightfield->dir, sizeof(float3)*paramsp->raysPerPixel);
+  
+  cudaMemcpy(dlightfield->pos,lf.pos,sizeof(float3)*paramsp->raysPerPixel,cudaMemcpyHostToDevice);
+  cudaMemcpy(dlightfield->dir,lf.dir,sizeof(float3)*paramsp->raysPerPixel,cudaMemcpyHostToDevice);
+}
+*/
+
+//setup data texture
+tex_data.addressMode[0] = cudaAddressModeClamp;
+tex_data.addressMode[1] = cudaAddressModeClamp;
+tex_data.filterMode = cudaFilterModeLinear;
+tex_data.normalized = false;
+
+cudaChannelFormatDesc channelDesc = cudaCreateChannelDesc<float4>();
+  cudaExtent extent = make_cudaExtent(paramsp->data_width, paramsp->data_height, paramsp->data_depth);
+  checkCudaErrors( cudaMalloc3DArray(&data_array, &channelDesc, extent) );
+  cudaMemcpy3DParms copyParams = {0};
+  copyParams.srcPtr = make_cudaPitchedPtr((void*)paramsp->data, extent.width*sizeof(float4), extent.width, extent.height);
+  copyParams.dstArray = data_array;
+  copyParams.extent = extent;
+  copyParams.kind = cudaMemcpyHostToDevice;
+  checkCudaErrors(  cudaMemcpy3D(&copyParams) );
+
+  cudaBindTextureToArray(tex_data, data_array, channelDesc);
+
+//setup cutoff texture
+  if (paramsp->cutoff  == CUTOFF_IMAGE)
+  {
+    tex_cutoff.addressMode[0] = cudaAddressModeClamp;
+    tex_cutoff.addressMode[1] = cudaAddressModeClamp;
+    tex_cutoff.filterMode = cudaFilterModeLinear;
+    tex_cutoff.normalized = true;
+
+    cudaChannelFormatDesc channelDesc2 = cudaCreateChannelDesc<float4>();
+    cudaMallocArray(&texture_array, &channelDesc2, paramsp->cutoffSize.x, paramsp->cutoffSize.y);
+    cudaMemcpyToArray(texture_array, 0, 0, paramsp->cutoff_rgb, paramsp->cutoffSize.x*paramsp->cutoffSize.y*sizeof(float4), cudaMemcpyHostToDevice);
+
+    cudaBindTextureToArray(tex_cutoff, texture_array, channelDesc2);
+    paramsp->cutoff_dirty = false;
+  }
+
+  Host_Resize(paramsp);
+}
+
+
+void Host_Render(RenderParameters* paramsp)
+{
+ 
+  /*
+  //int N = paramsp->random_array_size;
+  int N = 20;
+  printf("Generating %d random numbers\n", N);
+  // CUDA's random number library uses curandState_t to keep track of the seed value
+  //   we will store a random state for every thread  
+  curandState_t* states;
+
+  printf("Allocating Memory\n");
+  // allocate space on the GPU for the random states
+  checkCudaErrors(cudaMalloc((void**) &states, N * sizeof(curandState_t)));
+  
+  // invoke the GPU to initialize all of the random states
+  //Define a block of 16x16 = 256 threads. Each thread is a pixel
+  dim3 block_random(20,20,1);
+  // Define a grid of width/16 x height/16 blocks
+  dim3 grid_random((N/block_random.x),(N/block_random.y),1);   //positions go 0 to 100, which maps to -1 to 1 on each lightplace axis
+
+  printf("Calling init\n"); 
+  //init<<<grid_random, block_random>>>(time(0), states);
+  init<<<N,1>>>(time(0),states);
+  cudaThreadSynchronize();
+  cudaDeviceSynchronize();
+
+  // allocate an array of unsigned ints on the CPU and GPU 
+  float random_array[N];
+  float* gpu_nums;
+  cudaMalloc((void**) &gpu_nums, N * sizeof(float));
+  
+  // invoke the kernel to get some random numbers 
+  random<<<grid_random, block_random>>>(states, gpu_nums);
+  cudaThreadSynchronize();
+  cudaDeviceSynchronize();
+  // copy the random numbers back 
+  cudaMemcpy(random_array, gpu_nums, N * sizeof(float), cudaMemcpyDeviceToHost);
+  
+  printf("Finished Generating Random Numbes. First : %f, Last : %f\n",random_array[0],random_array[N-1]);
+  // free the memory we allocated for the states and numbers 
+  cudaFree(states);
+  cudaFree(gpu_nums);
+  */
+    printf("rendering...\n");
+    
+    if (last_width != paramsp->width || last_height != paramsp->height)
+        Host_Resize(paramsp);
+    
+    RenderParameters& params = *paramsp;
+    
+    Host_CopyMemory(paramsp);
+    int tallyLaunch,tallyReceive, tallyThresh, *dev_tally_Launch, *dev_tally_Receive, *dev_tally_Thresh;
+  cudaMalloc((void **)&dev_tally_Launch, sizeof(int));
+  tallyLaunch = 0;
+  cudaMemcpy(dev_tally_Launch, &tallyLaunch, sizeof(int), cudaMemcpyHostToDevice);
+  
+  cudaMalloc((void **)&dev_tally_Thresh, sizeof(int));
+  tallyThresh = 0;
+  cudaMemcpy(dev_tally_Thresh, &tallyThresh, sizeof(int), cudaMemcpyHostToDevice);
+
+  cudaMalloc((void **)&dev_tally_Receive, sizeof(int));
+  tallyReceive = 0;
+  cudaMemcpy(dev_tally_Receive, &tallyReceive, sizeof(int), cudaMemcpyHostToDevice);
+  
+ /*
+    float tallyOffset, *dev_tally_Offset;
+      cudaMalloc((void **)&dev_tally_Offset, sizeof(float));
+  tallyOffset = 0.0f;
+  cudaMemcpy(dev_tally_Offset, &tallyOffset, sizeof(float), cudaMemcpyHostToDevice);
+ */
+  // allocate space on the device for the results
+    cudaMemcpy(dparams, paramsp, sizeof(RenderParameters),cudaMemcpyHostToDevice);
+ 
+    cudaMalloc((void**)&d_source, sizeof(unsigned int)*paramsp->width*paramsp->height); 
+    cudaMemcpy(d_source,paramsp->source_rgb,sizeof(unsigned int)*params.width*params.height,cudaMemcpyHostToDevice);
+ 
+    cudaMalloc((void**)&d_rand, sizeof(float)*paramsp->random_array_size); 
+    cudaMemcpy(d_rand,paramsp->random_array,sizeof(float)*paramsp->random_array_size,cudaMemcpyHostToDevice);
+    //printf("source_rgb[1]: %d\n",paramsp->source_rgb[1]);
+    //printf("d_source[1]: %d\n", d_source[1]);
+    cudaThreadSynchronize();
+
+    //d_out = 0;
+    clock_t start = clock();
+
+    printf("Calling kernel_render \n");
+    
+    //Define a block of 16x16 = 256 threads. Each thread is a pixel
+    dim3 block(16,16,1);
+
+  /*
+    // Collinearity Based
+   dim3 grid((params.width/block.x),(params.height/block.y),1);   //positions go 0 to 100, which maps to -1 to 1 on each lightplace axis
+   kernel_render<<< grid, block>>>(d_ray_pos, d_ray_dir, dparams, d_inout, d_out, d_rand, d_source,dev_tally_Launch,dev_tally_Receive,dev_tally_Thresh);
+   cudaThreadSynchronize();
+ */
+  
+   // Random - 3D Grid
+   dim3 grid((params.width/block.x),(params.height/block.y),params.raysPerPoint);   //positions go 0 to 100, which maps to -1 to 1 on each lightplace axis
+   kernel_render<<< grid, block>>>(d_ray_pos, d_ray_dir, dparams, d_inout, d_out, d_rand, d_source,dev_tally_Launch,dev_tally_Receive,dev_tally_Thresh);
+   cudaThreadSynchronize();
+ 
+   /*
+   // Random
+   dim3 grid(params.width/block.x*params.height/block.y,paramsp->random_array_size,1);
+   kernel_render<<< grid, block>>>(d_ray_pos, d_ray_dir, dparams, d_inout, d_out, d_rand, d_source, dev_tally_Launch,dev_tally_Receive,dev_tally_Thresh);
+   cudaThreadSynchronize();
+   */
+   clock_t end = clock();
+   double cpu_time_used = ((double) (end-start))/CLOCKS_PER_SEC;
+
+    printf("Time taken for kernel call: %f\n", cpu_time_used);
+    paramsp->passes+=paramsp->raysPerPixel;
+    
+    /*
+    cudaMemcpy(&tallyLaunch, dev_tally_Launch, sizeof(int), cudaMemcpyDeviceToHost); 
+    printf("total number of photons launched: %d\n", tallyLaunch);
+    
+    cudaMemcpy(&tallyThresh, dev_tally_Thresh, sizeof(int), cudaMemcpyDeviceToHost); 
+    printf("total number of photons within threshold: %d\n", tallyThresh);
+
+    cudaMemcpy(&tallyReceive, dev_tally_Receive, sizeof(int), cudaMemcpyDeviceToHost); 
+    printf("total number of photons received: %d\n", tallyReceive);
+    */
+    /*    
+    cudaMemcpy(&tallyOffset, dev_tally_Offset, sizeof(float), cudaMemcpyDeviceToHost); 
+    printf("total offset: %f\n", tallyOffset);
+    */
+ 
+    cudaMemcpy(paramsp->out_rgb, d_out, sizeof(unsigned int)*params.width*params.height, cudaMemcpyDeviceToHost);
+    
+    //for(i = 0;i<paramsp->width*paramsp->height;i++)
+      
+    //cudaMemcpy(paramsp->lightfieldp, dlightfield, sizeof(LightField)*params.width*params.height, cudaMemcpyDeviceToHost);
+    
+    cudaThreadSynchronize();
+    //cudaFree(d_out);
+    glDrawPixels(params.width, params.height, GL_RGBA, GL_UNSIGNED_BYTE, paramsp->out_rgb);
+    printf("rendering finished\n");
+}
+
+
+void Host_Clear(RenderParameters* paramsp)
+{
+  if (!d_inout)
+    return;
+  cudaMemcpy(d_inout, paramsp->inout_rgb, sizeof(float4)*paramsp->width*paramsp->height, cudaMemcpyHostToDevice);
+}
+
+void Host_Kill()
+{
+
+//RenderParameters* dparams;
+cudaArray* data_array = 0, *texture_array = 0, *color_array = 0;
+// unsigned int last_width, last_height;
+    unsigned int* d_out = 0;
+    float4* d_inout = 0;
+    float* d_rand_theta = 0;
+    float* d_rand_phi = 0;
+    
+
+  cudaFree(d_inout);
+  //cudaFree(dparams);
+  cudaFree(d_out);
+  cudaFree(d_rand_theta);
+  cudaFree(d_rand_phi);
+  //cudaFree(d_rand_array);
+  cudaFree(d_source);
+  cudaFree(d_rand);
+
+cudaUnbindTexture (tex_data);
+ checkCudaErrors (cudaFreeArray (data_array));
+ cudaUnbindTexture (tex_data2);
+ checkCudaErrors (cudaFreeArray (texture_array));
+ cudaUnbindTexture (tex_cutoff);
+ checkCudaErrors (cudaFreeArray (color_array));
+}
+
+
+}
+
+void Host_CopyMemory(RenderParameters* paramsp)
+{
+//TODO: NOTE: for debugging perposes only memcopy, however need to support size changes
+
+if (paramsp->cutoff_dirty)
+{
+//if (texture_array)
+//    cudaFree(texture_array);
+    cudaChannelFormatDesc channelDesc2 = cudaCreateChannelDesc<float4>();
+//cudaMallocArray(&texture_array, &channelDesc2, paramsp->cutoffSize.x, paramsp->cutoffSize.y);
+cudaMemcpyToArray(texture_array, 0, 0, paramsp->cutoff_rgb, paramsp->cutoffSize.x*paramsp->cutoffSize.y*sizeof(float4), cudaMemcpyHostToDevice);
+paramsp->cutoff_dirty = false;
+}
+}
+
+void Host_Resize(RenderParameters* paramsp)
+{
+  int i;
+  
+  printf("resizing to %d %d \n", paramsp->width, paramsp->height);
+    paramsp->passes = 0;
+    //int window_size = paramsp->width*paramsp->height;
+    
+    printf("set d_inout to zero\n");
+    if (d_inout)
+      cudaFree(d_inout);
+    cudaMalloc((void**)&d_inout, sizeof(float4)*paramsp->width*paramsp->height);
+    for(size_t i = 0; i < paramsp->width*paramsp->height; i++)
+        paramsp->inout_rgb[i] = make_float4(0,0,0,0);
+    cudaMemcpy(d_inout, paramsp->inout_rgb, sizeof(float4)*paramsp->width*paramsp->height, cudaMemcpyHostToDevice);
+    
+    /*
+    printf("hello\n");
+    //initializing lightfield
+    for(i = 0;i<paramsp->width*paramsp->height; i++)
+    {
+      //printf("hello\n");
+      cudaFree(dlightfield[i].pos);
+      cudaFree(dlightfield[i].dir);
+      
+      cudaMalloc((void**)&dlightfield[i].pos,sizeof(float3)*paramsp->raysPerPixel);
+      cudaMalloc((void**)&dlightfield[i].dir,sizeof(float3)*paramsp->raysPerPixel);
+      for(int j = 0;j<paramsp->raysPerPixel;j++)
+      {
+	paramsp->lightfieldp[i].pos[j]=make_float3(0,0,0);
+        paramsp->lightfieldp[i].dir[j]=make_float3(0,0,0);
+      }
+    }
+    
+    cudaMemcpy(dlightfield, paramsp->lightfieldp, sizeof(paramsp->lightfieldp[0])*paramsp->width*paramsp->height, cudaMemcpyHostToDevice);
+    */
+    
+    printf("set d_ray_pos to zero\n");
+    if(d_ray_pos)
+      cudaFree(d_ray_pos);
+    cudaMalloc((void**)&d_ray_pos,sizeof(float3)*paramsp->width*paramsp->height*paramsp->random_array_size);
+    
+    //cudaMemset(d_ray_pos,(0.0,0.0,0.0),sizeof(float3)*paramsp->width*paramsp->height*paramsp->raysPerPixel);
+    
+    printf("set d_ray_dir to zero\n");
+    if(d_ray_dir)
+      cudaFree(d_ray_dir);
+    cudaMalloc((void**)&d_ray_dir,sizeof(float3)*paramsp->width*paramsp->height*paramsp->random_array_size);
+    
+    //cudaMemset(d_ray_dir,(0.0,0.0,0.0),sizeof(float3)*paramsp->width*paramsp->height*paramsp->raysPerPixel);
+    
+    printf("set d_out to zero\n");
+    if (d_out)
+      cudaFree(d_out);
+    cudaMalloc((void**)&d_out, sizeof(unsigned int)*paramsp->width*paramsp->height);
+    //for (int i = 0;i<paramsp->width*paramsp->height;i++)
+    //  d_out[i]=0;
+    last_width = paramsp->width;
+    last_height = paramsp->height;
+    
+    printf("set paramsp->out_rgb to zero\n");
+
+    if (paramsp->out_rgb)
+      free(paramsp->out_rgb);
+    paramsp->out_rgb = (unsigned int*)malloc(sizeof(unsigned int)*paramsp->width*paramsp->height);
+    for (i = 0;i<paramsp->width*paramsp->height;i++)
+      paramsp->out_rgb[i]=0;
+     cudaMemcpy(d_out, paramsp->out_rgb, sizeof(unsigned int)*paramsp->width*paramsp->height, cudaMemcpyHostToDevice);
+   
+  if (d_rand_theta)
+     cudaFree(d_rand_theta);
+  if(d_rand_phi)
+    cudaFree(d_rand_phi);
+
+   // Create Random Array
+
+   /*rand_array = (float*)malloc(sizeof(float)*paramsp->random_array_size);
+   for(i=0; i<paramsp->random_array_size; i++)
+     rand_array[i] = getRandom();
+
+   cudaMalloc((void**)&d_rand_array,sizeof(float)*paramsp->random_array_size);
+   //cudaMemset(d_rand_array,0,sizeof(float)*paramsp->random_array_size);
+   cudaMemcpyToSymbol(d_rand_array,rand_array,sizeof(float)*paramsp->random_array_size);       
+   */
+  //  cudaMalloc((void**)&d_rand_theta, sizeof(float));
+    
+  //  cudaMalloc((void**)&d_rand_phi, sizeof(float));
+  
+
+  /*    
+   paramsp->random_array_theta  = (float*)malloc(sizeof(float)*paramsp->random_array_size);
+   paramsp->random_array_phi  = (float*)malloc(sizeof(float)*paramsp->random_array_size);
+  
+   for(i =0;i<paramsp->random_array_size;i++){
+     paramsp->random_array_theta[i] = getRandom();
+     paramsp->random_array_phi[i] = getRandom();
+   }
+   
+   cudaMalloc((void**)&d_rand_theta, paramsp->random_array_size*sizeof(float));
+   cudaMemcpy( d_rand_theta, paramsp->random_array_theta,sizeof(float)*paramsp->random_array_size, cudaMemcpyHostToDevice  );
+
+   cudaMalloc((void**)&d_rand_phi, paramsp->random_array_size*sizeof(float));
+   cudaMemcpy( d_rand_phi, paramsp->random_array_phi,sizeof(float)*paramsp->random_array_size, cudaMemcpyHostToDevice  );
+   */
+}
+
+
+

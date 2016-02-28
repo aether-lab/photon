@@ -1,0 +1,81 @@
+Summary for PIV Job: BOS_5deg
+PIV Code Version: 2.6.0.beta.r2015.05.24
+PTV Code Version: 2.0.beta.r2012.11.26
+
+--------------------Experiment Parameters--------------------
+Date of Experiment:            
+Laser Wavelength (um):         .532
+Laser Pulse Separation (us):   1
+Camera Frame Rate (Hz):        1
+Pixel Size (um):               
+Image Resolution (um/pix):     1
+Lens Focal Length (mm):        
+Lens f#:                       
+Particle Diameter (um):        
+Particle Density (kg/m^3):     
+Fluid Density (kg/m^3):        1000
+Dynamic Viscosity (Pa*s):      1.308e-3
+Surface Tension (N/m):         0.07197
+Characteristic Length (m):     
+Characteristic Velocity (m/s): 
+Reynolds Number:               
+Particle Stokes Number:        
+Magnification Factor:          
+Region of Interest (m):        
+Diffraction Diameter (um):     
+Depth of Focus (um):           
+Experimental Notes:
+Camera Description:
+Experimental Notes:
+
+Experimental Notes:
+Lens Description:
+Experimental Notes:
+
+Experimental Notes:
+Notes:
+Experimental Notes:
+
+Experimental Notes:
+density ratio - 1.5
+Experimental Notes:
+viewing angle - 5 deg from the right
+
+----------------------Images and Masking---------------------
+Image Directory:               /home/barracuda/a/lrajendr/SchlierenRayVis/StereoBOS_pinhole/Processing/singleCameraResults/NormShock_1_5_5deg/
+Image Basename:                5_
+Image Zeros:                   1
+Image Extension:               tiff
+Image Frame Start:             1
+Image Frame Step:              1
+Image Frame End:               1
+Image Correlation Step:        1
+Image Color Channel:           Red (Grey Scale)
+Output Directory:              /home/barracuda/a/lrajendr/SchlierenRayVis/StereoBOS_pinhole/Processing/singleCameraResults/NormShock_1_5_5deg
+Masking Type:                  None
+
+---------------------Parallel Processing----------------------
+Parallel Processing:           No
+
+-----------------------PIV Processing------------------------
+Algorithm:                     Multigrid - DWO
+Velocity Interp Function:      Cubic
+
+------------------------Pass 1 Setup-------------------------
+Window Resolution (first image) (pix):        32,32; 32,32
+Window Resolution (second image) (pix):       32,32; 32,32
+Window Size (pix):                            64,64
+Grid Resolution (pix):                        8,8
+Window Overlap Percentage:                    75,75
+Grid Buffer (pix):                            8,8
+Bulk Window Offset (pix):                     0,0
+Correlation:                                  RPC
+   RPC Diameter:                              2.8,2.8
+Zero-Mean Image Windows:                      Yes
+Subpixel Peak Location Method:                Three-Point Gaussian
+Smoothing:                                    No
+Validation Type(s):                           None
+Write Output:                                 Yes
+Output Basename:                              BOS_pass1_
+Save Add. Peak Info:                          No
+Save Correlation Planes:                      No

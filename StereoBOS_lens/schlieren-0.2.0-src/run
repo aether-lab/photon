@@ -1,0 +1,1 @@
+make clean && make -j10 && ../../bin/linux/release/schlieren $*
