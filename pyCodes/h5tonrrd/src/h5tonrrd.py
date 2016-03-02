@@ -197,7 +197,7 @@ def save_nrrd(data,nrrd_filename):
     nrrd.write(nrrd_filename, np.array(data_scaled['rho']).astype('float32'), options)
 
 # specify filepath and filenames
-filepath = '/home/barracuda/a/lrajendr/Projects/SchlierenRayVis/Data/turbulent_channel_Mb=0.85_Reb=6900/'
+filepath = '/home/barracuda/a/lrajendr/Projects/photon/data/mach=0.85/snapshots/'
 filenames = glob.glob(filepath + '*.h5')
 
 # calculate number of files to be read
@@ -252,6 +252,23 @@ for count,file in enumerate(filenames):
 
 
 batch_file.close()
+                    
+# check interpolation
+import matplotlib.pyplot as plt
+var_list = ['rho','u','v','w','p','T']
+fig = plt.figure(0,figsize=( 10,10))
+for count,var in enumerate(var_list):
+    #plt.subplot(3,2,count+1)    
+    fig.add_subplot(3,2,count+1)    
+    plt.plot(data[var][128,:,96].T,data['y'],'ro',label = 'original')
+    plt.plot(data_remapped[var][128,:,96],data_remapped['y'],'b*',label = 'interpolated')
+    plt.ylabel('y')    
+    plt.legend(numpoints = 1)
+    plt.title(var)
+
+#plt.show()
+    
+plt.savefig('interpolation_same_N_linear.png',dpi=100)                   
                     
 
                     

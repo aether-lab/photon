@@ -258,8 +258,6 @@ for count,file in enumerate(filenames):
 
 batch_file.close()
                     
-
-                    
     
     
 
