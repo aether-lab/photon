@@ -24,6 +24,7 @@ import glob
 from scipy.interpolate import RegularGridInterpolator as rgi
 import nrrd
 import scipy.io as sio
+import sys
 
 
 def get_vars_from_hdf5(filepath):
@@ -38,11 +39,11 @@ def get_vars_from_hdf5(filepath):
     
     # read and store data in a dictionary
     d['rho'] = f.get('rho')[...]    # density
-    d['u'] = f.get('u')[...]        # x component of velocity
-    d['v'] = f.get('v')[...]        # y component of velocity
-    d['w'] = f.get('w')[...]        # z component of velocity
-    d['p'] = f.get('p')[...]        # pressure
-    d['T'] = f.get('T')[...]        # temperature
+#    d['u'] = f.get('u')[...]        # x component of velocity
+#    d['v'] = f.get('v')[...]        # y component of velocity
+#    d['w'] = f.get('w')[...]        # z component of velocity
+#    d['p'] = f.get('p')[...]        # pressure
+#    d['T'] = f.get('T')[...]        # temperature
     
     # read co-ordinate data
     d['x'] = f.get('x')[...]        
@@ -85,15 +86,17 @@ def remap_data_on_query_points(data1,xyz2):
     xq,yq,zq = np.meshgrid(x2,y2,z2,indexing = 'ij')
 
     # create array of string to query the data dictionary
-    var = ['rho', 'u', 'v', 'w', 'p', 'T']
+#    var = ['rho', 'u', 'v', 'w', 'p', 'T']
 
     # query data for various flow parameters and store in dataq
-    for current_var in var:        
-        my_interpolating_function = rgi((x1,y1,z1), np.array(data1[current_var]))
-        dataq[current_var] = my_interpolating_function(np.array([xq,yq,zq]).T)
-        # perform tranpose to maintain shape
-        dataq[current_var] = np.transpose(dataq[current_var])
+#    for current_var in var:        
+    current_var = 'rho'
+    my_interpolating_function = rgi((x1,y1,z1), np.array(data1[current_var]))
+    dataq[current_var] = my_interpolating_function(np.array([xq,yq,zq]).T)
 
+    # perform tranpose to maintain shape
+    dataq[current_var] = np.transpose(dataq[current_var])
+    
     # store the grid points
     dataq['x'] = x2
     dataq['y'] = y2
@@ -124,11 +127,13 @@ def scale_variables(data_ndim):
             'p' : np.float(ref_var['rho_b']) * np.float(ref_var['V'])**2,
             'T' : np.float(ref_var['T_w'])}    
   
-    var = ['rho', 'u', 'v', 'w', 'p', 'T']
-    # convert variables to dimensional values
-    for var_i in var:
-        data_dim[var_i] = np.float(scale_var[var_i]) * np.array(data_ndim[var_i])
+ #   var = ['rho', 'u', 'v', 'w', 'p', 'T']
+   
+   # convert variables to dimensional values
+ #   for var_i in var:
+ #       data_dim[var_i] = np.float(scale_var[var_i]) * np.array(data_ndim[var_i])
 
+    data_dim['rho'] = data_ndim['rho']*scale_var['rho']
     data_dim['x'] = data_ndim['x']*ref_var['h']
     data_dim['y'] = data_ndim['y']*ref_var['h']
     data_dim['z'] = data_ndim['z']*ref_var['h']
@@ -199,7 +204,7 @@ def save_nrrd(data,nrrd_filename):
 # specify filepath and filenames
 filepath = '/home/barracuda/a/lrajendr/Projects/SchlierenRayVis/Data/turbulent_channel_Mb=0.85_Reb=6900/'
 filenames = glob.glob(filepath + '*.h5')
-
+ 
 # calculate number of files to be read
 Nt = len(filenames)
 print "filepath: %s\n" % filepath

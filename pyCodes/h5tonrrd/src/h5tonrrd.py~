@@ -191,7 +191,7 @@ def save_nrrd(data,nrrd_filename):
     nrrd.write(nrrd_filename, np.array(data_scaled['rho']).astype('float32'), options)
 
 # specify filepath and filenames
-filepath = '/home/barracuda/a/lrajendr/SchlierenRayVis/Data/turbulent_channel_M_5/'
+filepath = '/home/barracuda/a/lrajendr/Projects/SchlierenRayVis/Data/turbulent_channel_Mb\=0.85_Reb\=6900/'
 filenames = glob.glob(filepath + '*.h5')
 
 # calculate number of files to be read
@@ -200,7 +200,7 @@ print "filepath: %s\n" % filepath
 print "No. of files : %d\n" % Nt
 
 # specify number of iterations to perform during debugging
-# Nt = 0
+Nt = 0
 #print 'Debug Mode, Nt = %d' % Nt
 
 
@@ -216,7 +216,7 @@ for count,file in enumerate(filenames):
     
     # obtain variables stored in the file
     data = get_vars_from_hdf5(file)
-	print ('Acquired data from: %s' % file)
+    print ('Acquired data from: %d %s' % (count+1, file))
 
     # for the first iteration, establish the mapping routine
     if count == 0:
